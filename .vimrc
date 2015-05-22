@@ -25,6 +25,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'msanders/snipmate.vim'
 Plugin 'rstacruz/sparkup'
 Plugin 'gregsexton/MatchTag'
+Plugin 'jiangmiao/auto-pairs'
 
 " Colors
 Plugin 'justinmk/vim-syntax-extra'
@@ -60,7 +61,12 @@ set number
 set autoindent
 set cindent
 syntax enable
-colorscheme wells-colors
+"colorscheme default
+"colorscheme solarized
+colorscheme wells-colors 	"Color scheme that looks like Monokai but better.
+"colorscheme cthulhian		"A nice blue.
+"colorscheme darkeclipse	"Nice dark
+"colorscheme zmrok			"Nice gray looking thing
 "set background=light
 "hi Normal ctermbg=black
 
@@ -83,7 +89,6 @@ let mapleader=";"
 map <leader>ev :tabnew $MYVIMRC
 map <leader>sv :source $MYVIMRC
 
-inoremap jj <ESC>
 inoremap jk <ESC>
 nmap ' :
 
