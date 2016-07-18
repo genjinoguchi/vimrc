@@ -54,6 +54,7 @@ filetype plugin indent on
 
 "COPYING
 set clipboard=unnamed
+set pastetoggle=<F2>
 
 "STYLING
 set shiftwidth=4 tabstop=4
@@ -61,14 +62,15 @@ set number
 set autoindent
 set cindent
 syntax enable
-"colorscheme default
+
+set background=dark
+highlight Normal guibg=black ctermbg=None
+"colorscheme defaulv
 "colorscheme solarized
-colorscheme wells-colors 	"Color scheme that looks like Monokai but better.
+"colorscheme wellsokai 	"Color scheme that looks like Monokai but better.
 "colorscheme cthulhian		"A nice blue.
 "colorscheme darkeclipse	"Nice dark
 "colorscheme zmrok			"Nice gray looking thing
-"set background=light
-"hi Normal ctermbg=black
 
 "MOUSEENABLED
 set ttyfast
@@ -98,4 +100,23 @@ autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+function! s:CloseIfOnlyNerdTreeLeft()
+	if exists("t:NERDTreeBufName")
+		if bufwinnr(t:NERDTreeBufName) != -1
+			if winnr("$") == 1
+				q
+			endif
+		endif
+	endif
+endfunction")"
+
+"Powerline
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+" Always show statusline
+set laststatus=2
+" Use 256 colors
+set t_Co=256
 
