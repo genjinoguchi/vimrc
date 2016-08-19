@@ -1,0 +1,122 @@
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" This is the Vundle package, which can be found on GitHub.
+" For GitHub repos, you specify plugins using the
+" 'user/repository' format
+
+" Vundle - Vim Package Manager
+Plugin 'gmarik/vundle'
+
+" File Finders
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+
+" Motion
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'Valloric/YouCompleteMe'
+
+" Shortcuts
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-repeat'
+Plugin 'msanders/snipmate.vim'
+Plugin 'rstacruz/sparkup'
+Plugin 'gregsexton/MatchTag'
+Plugin 'jiangmiao/auto-pairs'
+
+" Colors
+Plugin 'justinmk/vim-syntax-extra'
+Plugin 'altercation/vim-colors-solarized'
+" https://github.com/flazz/vim-colorschemes/tree/master/colors
+Plugin 'flazz/vim-colorschemes'
+Plugin 'duythinht/inori'
+Plugin 'wellsjo/wells-colorscheme.vim'
+
+" HTML/CSS
+
+" Javascript/Node
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'pangloss/vim-javascript'
+Plugin 'caolan/nodeunit'
+
+
+" We could also add repositories with a ".git" extension
+
+" To get plugins from Vim Scripts, you can reference the plugin
+" by name as it appears on the site
+
+" Now we can turn our filetype functionality back on
+filetype plugin indent on
+
+
+"COPYING
+set clipboard=unnamed
+set pastetoggle=<F2>
+
+"STYLING
+set shiftwidth=4 tabstop=4
+set number
+set autoindent
+set cindent
+syntax enable
+
+set background=dark
+highlight Normal guibg=black ctermbg=None
+"colorscheme defaulv
+"colorscheme solarized
+colorscheme wellsokai 	"Color scheme that looks like Monokai but better.
+"colorscheme cthulhian		"A nice blue.
+"colorscheme darkeclipse	"Nice dark
+
+"MOUSEENABLED
+set ttyfast
+set mouse=a
+set ttymouse=xterm2
+
+"TABBING
+"set cinkeys=0{,0},0),0#,!<Tab>,;,:,o,O,e
+"set indentkeys=!<Tab>,o,O
+"map <Tab> i<Tab><Esc>^
+"filetype indent on
+"set cinoptions=:0,(0,u0,W1s
+"set cinoptions={1s,>2s,e-1s,^-1s,n-1s,:1s,p5,i4,(0,u0,W1s shiftwidth=4
+
+
+"REMAPPING
+let mapleader=";"
+map <leader>ev :tabnew $MYVIMRC
+map <leader>sv :source $MYVIMRC
+
+inoremap jk <ESC>
+
+nmap ' :
+
+"NERDTREE
+map <C-n> :NERDTreeToggle<CR>
+autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+function! s:CloseIfOnlyNerdTreeLeft()
+	if exists("t:NERDTreeBufName")
+		if bufwinnr(t:NERDTreeBufName) != -1
+			if winnr("$") == 1
+				q
+			endif
+		endif
+	endif
+endfunction")"
+
+"Powerline
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+" Always show statusline
+set laststatus=2
+" Use 256 colors
+set t_Co=256
+
